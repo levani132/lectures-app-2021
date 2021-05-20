@@ -1,1 +1,14 @@
-<p>shell works!</p>
+
+<div class="ui form">
+    <div class = "field">
+        <input type="text" [(ngModel)]= "username">
+    </div>   
+</div>
+<p>{{username}}</p>
+<button class = "ui button" [disabled] = "!username" (click)="myFun()">not empty</button>
+
+<hr>
+<button class="ui button" (click)="rame()">{{smthng}}</button>
+<p>{{text}}</p>
+<div [ngStyle]="{backgroundColor: counter >= 5 ? 'blue' : ''}"
+    [ngClass]="{tetri: counter >= 7 }">{{counter}}</div>
