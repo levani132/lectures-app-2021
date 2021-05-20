@@ -1,0 +1,29 @@
+<div class="ui form">
+    <div class="field">
+      <label>Username</label>
+      <input 
+        type="text"
+        [(ngModel)] = "username"
+        >
+    </div>
+  </div>
+  <button 
+    class="ui button"
+    [disabled] = "!(username.length > 0)"
+    (click) = "username=''"
+    >Reset
+    </button>
+  <p>{{username}}</p>
+  <hr>
+  <button 
+    class="ui button"
+    (click) = "showBtnAction()"
+    >Show
+    </button>
+  <p *ngIf = "isParagraphVisible">
+      Example Text
+    </p>
+  <p *ngFor = "let a of numList; let i = index"
+     [ngStyle] = "{backgroundColor: i>=4? 'blue':''}"
+     [ngClass] = "{wht: i>=6}"
+    > {{a}}</p>
