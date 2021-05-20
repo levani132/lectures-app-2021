@@ -1,0 +1,19 @@
+<div class="ui form">
+    <div class="field">
+        <label>username</label>
+        <input type="text" (input)="inputValue($event)" [value]=username>
+    </div>
+</div>
+<p>{{ username }}</p>
+
+<button class="ui button" (click)="username = ''" [disabled]="!username">clear</button>
+
+<hr>
+
+<button class="ui button" (click)="showParagraph();">show</button>
+
+<p *ngIf="paragraphToggle">{{paragraph}}</p>
+
+<p *ngFor="let length of paragraphArr; let i = index"
+[ngStyle]="{ backgroundColor: length >= 5 ? 'cyan' : '' }"
+[ngClass]="{ buttonStyle: i >= 7 }">{{ length }}</p>
