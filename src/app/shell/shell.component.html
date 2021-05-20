@@ -1,0 +1,16 @@
+<!-- <p>shell works!</p> -->
+<div class="ui form">
+    <div class="field">
+        <label>username</label>
+        <input type="text" [(ngModel)] = "username">
+    </div>
+</div>
+<p>{{username}}</p>
+<button class="ui button" [disabled]="!username" (click)="delete()">გასუფთვება</button>
+<hr>
+<button class="ui button" (click) = "dissappear()">გამოჩენა</button>
+<p>{{text}}</p>
+<p *ngFor = "let counter of count" 
+[ngStyle]="{backgroundColor: counter >=5 ? 'blue' : ''}"
+[ngClass]="{whiten: counter >=7}"
+>{{counter}}</p>
