@@ -1,0 +1,12 @@
+.btnPlace{
+    padding: 30px 0px;
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button{
+        color: black;
+        &:hover {color: black;}
+    }
+}
+

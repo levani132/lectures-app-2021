@@ -11,4 +11,9 @@
     <li>ასევე კარგი იქნება თუ გასტილავთ odd და even ელემენტებს</li>
   </ol>
   <!-- TODO: წაშალეთ ეს კომენტარი და ამის ადგილას ჩასვით თქვენი კომპონენტები -->
+  <bg-game-control 
+  (extend)="onextendClicked($event)"
+  ></bg-game-control>
+  <bg-odd *ngFor = "let i of odds" >{{i}}</bg-odd>
+  <bg-even *ngFor = "let j of evens" >{{j}}</bg-even>
 </div>

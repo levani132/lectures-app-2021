@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  odds=[];
+  evens=[];
+  onextendClicked(num: number){
+    if(num % 2 == 0){
+      this.evens.push(num);
+      console.log(this.evens)
+    }else{
+      this.odds.push(num);
+    }
+  }
   title = 'lectures-app';
 }
+
