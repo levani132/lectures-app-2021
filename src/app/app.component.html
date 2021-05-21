@@ -1,4 +1,4 @@
-<div class="ui container">
+<div class="ui container app-class">
   <h1>სემინარის დავალება</h1>
   <ol>
     <li>შექმენით სამი კომპონენტი: GameControl, Odd და Even</li>
@@ -11,4 +11,7 @@
     <li>ასევე კარგი იქნება თუ გასტილავთ odd და even ელემენტებს</li>
   </ol>
   <!-- TODO: წაშალეთ ეს კომენტარი და ამის ადგილას ჩასვით თქვენი კომპონენტები -->
+  <bg-game-control (LetsStart)="rame($event)"></bg-game-control>
+  <bg-even *ngFor ="let i of evenArr">{{i}}</bg-even>
+  <bg-odd *ngFor ="let i of oddArr" >{{i}}</bg-odd>
 </div>
