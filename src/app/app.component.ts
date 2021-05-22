@@ -6,10 +6,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  numListEven = [];
+  numListOdd = [];
+  count = 0;
+  ref;
   title = 'lectures-app';
-  numbers = [];
 
-  onCount(nextNumber) {
-    this.numbers.push(nextNumber);
+  onInterval(){
+    this.ref = setInterval(
+        ()=>{
+          this.count++;
+          if(this.count%2 === 0){
+            this.numListEven.push(this.count);
+          }
+          else{
+            this.numListOdd.push(this.count);
+          }
+        },
+        1000);
+  }
+  stopInterval(){
+    clearInterval(this.ref);
   }
 }
