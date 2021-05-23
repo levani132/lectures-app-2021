@@ -1,26 +1,23 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'bg-game-control',
   templateUrl: './game-control.component.html',
   styleUrls: ['./game-control.component.scss']
 })
-export class GameControlComponent implements OnInit {
-  @Output() count = new EventEmitter<number>();
-  interval: any;
-  lastEmittedNumber = 0;
-
+export class GameControlComponent {
+  @Output() increment = new EventEmitter<number>()
+  interval;
+  counter = 0;
+  
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
   onStart() {
-    this.interval = setInterval(() => this.count.emit(this.lastEmittedNumber++), 1000);
+    this.interval = setInterval(() => { 
+      this.increment.emit(this.counter++);
+    }, 1000)
   }
-
-  onEnd() {
+  onStop() {
     clearInterval(this.interval);
   }
-
 }

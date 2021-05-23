@@ -7,9 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'lectures-app';
-  numbers = [];
-
-  onCount(nextNumber) {
-    this.numbers.push(nextNumber);
+  Odds = [];
+  Evens = [];
+  increment(num: number) { 
+    if (num % 2) { 
+      this.Odds.push(num);
+    } else {
+      this.Evens.push(num);
+    }
   }
 }
