@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   numListEven = [];
   numListOdd = [];
+  numList = [];
   count = 0;
   ref;
   title = 'lectures-app';
@@ -16,6 +17,7 @@ export class AppComponent {
     this.ref = setInterval(
         ()=>{
           this.count++;
+          this.numList.push(this.count);
           if(this.count%2 === 0){
             this.numListEven.push(this.count);
           }

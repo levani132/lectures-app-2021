@@ -16,12 +16,21 @@
     (start)="onInterval()"
     (stop)="stopInterval()">
     </bg-game-control>
-  <bg-odd
+  <div
+    *ngFor = "let elem of numList">
+    <bg-odd 
+    *ngIf = "elem%2 === 1"
+    [num] = "elem"></bg-odd>
+    <bg-even 
+    *ngIf = "elem%2 === 0"
+    [num] = "elem"></bg-even>
+  </div>
+  <!-- <bg-odd
     *ngFor = "let a of numListOdd"
     [num]="a">
     </bg-odd>
   <bg-even
     *ngFor = "let a of numListEven"
     [num]="a">
-    </bg-even>
+    </bg-even> -->
 </div>
