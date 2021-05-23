@@ -6,8 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  numListEven = [];
-  numListOdd = [];
   numList = [];
   count = 0;
   ref;
@@ -18,12 +16,6 @@ export class AppComponent {
         ()=>{
           this.count++;
           this.numList.push(this.count);
-          if(this.count%2 === 0){
-            this.numListEven.push(this.count);
-          }
-          else{
-            this.numListOdd.push(this.count);
-          }
         },
         1000);
   }
