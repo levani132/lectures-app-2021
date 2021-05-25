@@ -3,9 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { PopupDirective } from './bg-Popup/popup.directive';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PopupDirective
   ],
   imports: [
     BrowserModule
