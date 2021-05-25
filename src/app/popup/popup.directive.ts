@@ -1,15 +1,16 @@
-import { Directive, HostBinding, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[bgPopup]'
 })
 export class PopupDirective {
+
+  constructor(private elementRef: ElementRef<HTMLElement>) { }
   @HostBinding('class.open') isOpen = false;
 
-  @HostListener('click') toggleOpen() {
-    this.isOpen = !this.isOpen;
-  }
 
-  constructor() { }
+  @HostListener('document:click', ['$event']) toggleOpen($event) {
+    this.isOpen = this.elementRef.nativeElement.contains($event.target) ? !this.isOpen : false;
+  }
 
 }
