@@ -1,22 +1,21 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+import { ClientManager } from '../client.manager.service';
+
 @Component({
   selector: 'bg-inactive-users',
   templateUrl: './inactive-users.component.html',
   styleUrls: ['./inactive-users.component.scss']
 })
 export class InactiveUsersComponent implements OnInit {
-  @Input() users: string[];
 
-  @Output() userSetToActive = new EventEmitter<number>();
-
-  constructor() { }
+  constructor(public clientManager: ClientManager) { }
 
   ngOnInit(): void {
   }
 
   changeStatus(id: number) {
-    this.userSetToActive.emit(id);
+    this.clientManager.onSetToActive(id);
   }
 
 }

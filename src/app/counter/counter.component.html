@@ -1,3 +1,6 @@
-<div class="ui dimmer"><!-- დაამატეთ კლასი active რომ გამოჩნდეს -->
-  <h1>{{ 5 }}</h1>
+<div 
+  class="ui dimmer"
+  [ngClass]="{active: this.counter.showCount}"><!-- დაამატეთ კლასი active რომ გამოჩნდეს -->
+  <h1>{{ this.counter.counter }}</h1>
+  <div class="ui text loader">Loading</div>
 </div>
