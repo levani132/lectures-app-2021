@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'lectures-app';
+  odds = [];
+  evens = [];
+
+  onIncrement(num :number){
+    if (num % 2 === 1){
+      this.odds.push(num);
+    }
+    else
+      this.evens.push(num);
+      console.log(2);
+  }
 }
