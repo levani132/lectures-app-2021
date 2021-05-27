@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {UsersManagementService} from '../users-management.service';
+import{ CounterService } from '\../counter.service';
 
 @Component({
   selector: 'bg-active-users',
@@ -10,7 +11,7 @@ import {UsersManagementService} from '../users-management.service';
 export class ActiveUsersComponent implements OnInit {
   users: string[];
 
-  constructor(private usersManagementService: UsersManagementService ) { }
+  constructor(private usersManagementService: UsersManagementService, private counterService : CounterService  ) { }
 
   ngOnInit(): void {
     this.users = this.usersManagementService.activeUsers;
@@ -18,6 +19,8 @@ export class ActiveUsersComponent implements OnInit {
 
   changeStatus(id: number) {
     this.usersManagementService.onSetToInactive(id);
+    this.counterService.RaiseCounter();
+    this.counterService.ShowCounter();
   }
 
 }
