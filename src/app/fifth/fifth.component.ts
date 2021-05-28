@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FifthService } from './fifth.service';
 
 @Component({
@@ -9,10 +10,13 @@ import { FifthService } from './fifth.service';
 export class FifthComponent implements OnInit {
   people: string[];
 
-  constructor(private fifthService: FifthService) { }
+  constructor(private fifthService: FifthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.people = this.fifthService.getPeople();
+    this.people = this.route.snapshot.data.people;
+    this.route.data.subscribe(({ people }) => {
+      this.people = people;
+    })
   }
-
 }
+

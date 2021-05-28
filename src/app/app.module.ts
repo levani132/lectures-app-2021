@@ -8,6 +8,8 @@ import { ThirdComponent } from './third/third.component';
 import { FourthComponent } from './fourth/fourth.component';
 import { FifthComponent } from './fifth/fifth.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CanActivateGuard } from './can-activate-guard.service';
+import { FifthResolver } from './fifth/fifth.resolver';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CanActivateGuard, FifthResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
