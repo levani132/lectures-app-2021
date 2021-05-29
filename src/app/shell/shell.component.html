@@ -1,0 +1,24 @@
+<div class="ui form">
+    <div class="field">
+        <label> Username: </label>
+        <input type="text" [(ngModel)]="username">
+        <p>{{ username }}</p>
+    </div>
+</div>
+
+<button class="ui button" [disabled] = "!username" (click)=" username='' "> clear </button>
+
+<hr>
+<button class="ui button" (click)="buttonClickAction()"> show </button>
+<p *ngIf="isVisible;"> make me dissapear </p>
+
+<div>
+    <label> click Number: </label>
+    <p *ngFor="let num of clickNums; let ind = index"
+       [ngStyle]="{ backgroundColor: ind >= 5 ? 'blue' : '' }"
+       [ngClass]="{ makeWhite: ind >= 7}"> 
+
+        {{ num }} 
+    
+    </p>
+</div>
