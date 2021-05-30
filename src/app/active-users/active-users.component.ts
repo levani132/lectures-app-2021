@@ -1,22 +1,23 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CounterService } from '../counter.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'bg-active-users',
   templateUrl: './active-users.component.html',
-  styleUrls: ['./active-users.component.scss']
+  styleUrls: ['./active-users.component.scss'],
 })
 export class ActiveUsersComponent implements OnInit {
-  @Input() users: string[];
 
-  @Output() userSetToInactive = new EventEmitter<number>();
+  constructor(private Active: UserService, private count: CounterService) {}
 
-  constructor() { }
+  activesList = this.Active.activeUsers;
 
-  ngOnInit(): void {
-  }
+
+  ngOnInit(): void {}
 
   changeStatus(id: number) {
-    this.userSetToInactive.emit(id);
+    this.Active.onSetToInactive(id);
+    this.count.counter();
   }
-
 }
