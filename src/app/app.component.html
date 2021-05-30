@@ -10,5 +10,9 @@
     <li>გამოიტანეთ odd კომპონენტში უბრალოდ "Odd - რიცხვი" და Even-ში "Even - რიცხვი"</li>
     <li>ასევე კარგი იქნება თუ გასტილავთ odd და even ელემენტებს</li>
   </ol>
-  <!-- TODO: წაშალეთ ეს კომენტარი და ამის ადგილას ჩასვით თქვენი კომპონენტები -->
+ 
+  <bg-game-control (increment)="onIncrement($event)"></bg-game-control>
+  <bg-odd *ngFor="let odd of odds"> {{ odd }} </bg-odd>
+  <bg-even *ngFor="let even of evens"> {{ even }} </bg-even>
+
 </div>
