@@ -20,10 +20,17 @@ export class AppComponent implements OnInit {
       return new Observable<number>((observer: Observer<number>) => {
         setTimeout(() => {
           observer.next(time);
+          observer.complete();
         }, time);
       });
     }
     const subs = timeout(500).pipe(map((value,index) => 'dato ' + value + ' dato'));
-    subs.subscribe(value => console.log(value));
+    subs.subscribe(value => {
+      console.log(value);
+    });
+    this.seminarService.subject.subscribe(() => {
+      this.showCongratulations = !this.showCongratulations;
+    }
+    );
   }
 }
