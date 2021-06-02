@@ -14,4 +14,46 @@
     <li>submit ღილაკზე დაჭერისას კონსოლში დალოგეთ ფორმის მნისვნელობა.</li>
   </ol>
   <!-- TODO: წაშალეთ ეს კომენტარი და ამის ადგილას ჩასვით თქვენი კომპონენტები -->
+  <form class="ui form" [formGroup]='formGroup' (ngSubmit)="onSubmit()">
+    <div class="fields">
+      <div class="nine wide field">
+        <label>სახელი</label>
+        <input type="text" formControlName='titleName'>
+        <ng-container *ngIf="formGroup.get('titleName').touched">
+          <p *ngIf="formGroup.get('titleName').errors?.required">
+            დაწერე თუ წერ
+          </p>
+          <p *ngIf="formGroup.get('titleName').errors?.checkForTest">
+            {{ this.formGroup.get('titleName').errors.checkForTest }}
+          </p>
+        </ng-container>
+      </div>
+    </div>
+    <div class="fields">
+      <div class="nine wide field">
+        <label>მეილი</label>
+        <input type="text" formControlName='mail'>
+        <ng-container *ngIf="formGroup.get('mail').touched">
+          <p *ngIf="formGroup.get('mail').errors?.required">
+            შეავსე
+          </p>
+          <p *ngIf="formGroup.get('mail').errors?.email">
+            არასწორი მეილი
+          </p>
+          <p *ngIf="formGroup.get('mail').errors?.checkForTestMail">
+            {{ this.formGroup.get('mail').errors.checkForTestMail }}
+          </p>
+        </ng-container>
+      </div>
+    </div>
+    <div class="field">
+      <label>სტატუსი</label>
+      <select formControlName='status'>
+        <option value="სტაბილური">სტაბილური</option>
+        <option value="კრიტიკული">კრიტიკული</option>
+        <option value="დასრულებული">დასრულებული</option>
+      </select>
+    </div>
+    <button class="ui orange button" (onClick)="onSubmit()">დასრულება</button>
+  </form>
 </div>
