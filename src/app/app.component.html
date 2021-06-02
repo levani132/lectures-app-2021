@@ -13,5 +13,51 @@
     <li>ასევე შექმენით(ან გადააკეთეთ წინა ასინქრონულად) ასინქრონული ვალიდატორი, რომელიც შეამოწმებს მეილი test@test.com-ს ხომ არ უდრის</li>
     <li>submit ღილაკზე დაჭერისას კონსოლში დალოგეთ ფორმის მნისვნელობა.</li>
   </ol>
-  <!-- TODO: წაშალეთ ეს კომენტარი და ამის ადგილას ჩასვით თქვენი კომპონენტები -->
+  <div class="ui container">
+    <form class="ui form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="fields">
+        <div class="nine wide field">
+          <label>პროექტის სახელი</label>
+          <input type="text" placeholder="პროექტის სახელი" formControlName="projectName">
+        </div>
+      </div>
+      <div
+        class="validation"
+        *ngIf="form.get('projectName').invalid && form.get('projectName').touched"
+      >
+        <p *ngIf="form.get('projectName').errors.required">
+          ველი არ უნდა იყოს ცარიელი
+        </p>
+        <p *ngIf="form.get('projectName').errors.checkProjectName">
+          პროექტის სახელი {{ form.get('projectName').value }} აკრძალულია
+        </p>
+      </div>
+      <div class="fields">
+        <div class="nine wide field">
+          <label>მეილი</label>
+          <input type="text" placeholder="test@gmail.com" formControlName="email">
+        </div>
+      </div>
+      <div
+        class="validation"
+        *ngIf="form.get('email').invalid && form.get('email').touched"
+      >
+        <p *ngIf="form.get('email').errors.required">
+          ველი არ უნდა იყოს ცარიელი
+        </p>
+        <p *ngIf="form.get('email').errors.checkAsyncEmail">
+          მეილი {{ form.get('email').value }} აკრძალულია
+        </p>
+      </div>
+      <div class="fields" formGroupName="selectGroup">
+        <div class="field">
+          <label>პროექტის სტატუსი</label>
+          <select [value]="selects" formControlName="selectItem">
+            <option *ngFor="let select of selects">{{ select }}</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="ui violet button" [disabled]="form.invalid">დასრულება</button>
+    </form>
+  </div>
 </div>
