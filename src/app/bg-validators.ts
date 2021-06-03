@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, Validators } from '@angular/forms';
-import { promise } from 'selenium-webdriver';
+import { Observable } from 'rxjs';
 
 export class BGValidators extends Validators {
   static required(control: AbstractControl): ValidationErrors | null {
@@ -14,15 +14,18 @@ export class BGValidators extends Validators {
     control: AbstractControl
   ): ValidationErrors | null {
     return control.value?.toLowerCase() === 'test'
-      ? { required: 'ამ სახელს ვერ გამოიყენებთ' }
+      ? { restrictedNameValidator: 'ამ სახელს ვერ გამოიყენებთ' }
       : null;
+  }
+/// async
+static restrictedMailValidator(
+    control: AbstractControl
+  ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+    return new Promise(resolve => {
+      resolve(control.value?.toLowerCase() === 'test@test.com'
+      ? { restrictedMailValidator: 'ამ მეილის გამოყენება არ შეიძლება' }
+      : null)
+    });
   }
 
-  static restrictedMailValidator(
-    control: AbstractControl
-  ): ValidationErrors | null {
-    return control.value?.toLowerCase() === 'test@test.com'
-      ? { required: 'ამ მეილის გამოყენება არ შეიძლება' }
-      : null;
   }
-}

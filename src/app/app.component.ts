@@ -24,8 +24,8 @@ export class AppComponent {
       mail: new FormControl('', [
         BGValidators.email,
         BGValidators.required,
-        BGValidators.restrictedMailValidator,
-      ]),
+      ],
+      BGValidators.restrictedMailValidator),
       status: new FormControl(''),
     });
   }

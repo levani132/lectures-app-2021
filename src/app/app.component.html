@@ -42,6 +42,16 @@
     >
       {{ form.get("projectName")?.errors?.required }}
     </p>
+    <p
+      class="errors"
+      *ngIf="
+        form.get('projectName')?.errors?.restrictedNameValidator &&
+        form.get('projectName').touched
+      "
+    >
+      {{ form.get("projectName")?.errors?.restrictedNameValidator }}
+    </p>
+    
 
     <div class="fields">
       <div class="nine wide field">
@@ -54,6 +64,12 @@
       *ngIf="form.get('mail')?.errors?.required && form.get('mail').touched"
     >
       {{ form.get("mail")?.errors?.required }}
+    </p>
+    <p
+      class="errors"
+      *ngIf="form.get('mail')?.errors?.restrictedMailValidator && form.get('mail').touched"
+    >
+      {{ form.get("mail")?.errors?.restrictedMailValidator }}
     </p>
     <div class="fields">
       <div class="nine wide field">
