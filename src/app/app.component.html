@@ -14,36 +14,37 @@
     <li>submit ღილაკზე დაჭერისას კონსოლში დალოგეთ ფორმის მნისვნელობა.</li>
   </ol>
   <!-- TODO: წაშალეთ ეს კომენტარი და ამის ადგილას ჩასვით თქვენი კომპონენტები -->
+  <form class="ui form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="inputClass">
+      <label>პროექტის სახელი</label>
+      <input type="text" formControlName="projectName">
+      <div  *ngIf="ourGet('projectName')?.touched">
+        <p class="danger" *ngFor="let error of errors('projectName')">
+          {{ error }}
+        </p>
+      </div>
+    </div>
+    <div class="inputClass">
+      <label>ელ.ფოსტა</label>
+      <input type="email" formControlName="projectEmail">
+      <div *ngIf="ourGet('projectEmail')?.touched">
+        <p class="danger" *ngFor="let error of errors('projectEmail')">
+          {{ error }}
+        </p>
+      </div>
+    </div>
+    <div class="inputClass">
+      <label>პროექტის სტატუსი</label>
+      <select formControlName="projectStatus">
+        <option selected>აირჩიეთ პროექტის სტატუსი</option>
+        <option *ngFor = "let status of projectStatus">{{ status }}</option>
+      </select>
+    </div>
+    <div class="inputClass">
+      <button type="submit" class="ui button green">დასრულება</button>
+    </div>
+    <!-- {{ form.value | json }} -->
+  </form>
 </div>
 
-<form class="ui form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="inputClass">
-    <label>პროექტის სახელი</label>
-    <input type="text" formControlName="projectName">
-    <div  *ngIf="ourGet('projectName')?.touched">
-      <p class="danger" *ngFor="let error of errors('projectName')">
-        {{ error }}
-      </p>
-    </div>
-  </div>
-  <div class="inputClass">
-    <label>ელ.ფოსტა</label>
-    <input type="email" formControlName="projectEmail">
-    <div *ngIf="ourGet('projectEmail')?.touched">
-      <p class="danger" *ngFor="let error of errors('projectEmail')">
-        {{ error }}
-      </p>
-    </div>
-  </div>
-  <div class="inputClass">
-    <label>პროექტის სტატუსი</label>
-    <select formControlName="projectStatus">
-      <option selected>აირჩიეთ პროექტის სტატუსი</option>
-      <option *ngFor = "let status of projectStatus">{{ status }}</option>
-    </select>
-  </div>
-  <div class="inputClass">
-    <button type="submit" class="ui button green">დასრულება</button>
-  </div>
-  <!-- {{ form.value | json }} -->
-</form>
+

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   projectStatus = ["სტაბილური", "კრიტიკული", "დასრულებული"];
 
   restrictedName = "test"; // Test tolowercase is restricted as well
-  restrictedEmailName = ["test@test.com"];
+  // restrictedEmailName = ["test@test.com"];
   form: FormGroup;
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit{
   initForm() {
     this.form = new FormGroup({
       projectName: new FormControl('', [BgValidators.required, this.restrictedProjectName.bind(this)]),
-      projectEmail: new FormControl('', [BgValidators.required, BgValidators.email]), //, this.restrictedEmailValidator.bind(this)
+      projectEmail: new FormControl('', [BgValidators.required, BgValidators.email, BgValidators.restrictedEmailName]),
       projectStatus: new FormControl('')
     });
   }

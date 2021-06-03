@@ -2,7 +2,9 @@ import { AbstractControl, ValidationErrors, Validators } from "@angular/forms";
 
 export class BgValidators extends Validators {
 
-    // restrictedName = "Test"; // Test tolowercase is restricted as well
+    // restrictedEmail= "test@test.com";
+ 
+    // restrictedName = "Test"; 
 
     static required(control: AbstractControl) : ValidationErrors | null {
         return super.required(control) ? {required: "ეს ველი აუცილებელია"} : undefined;
@@ -12,9 +14,9 @@ export class BgValidators extends Validators {
         return super.email(control) ? {email: "გთხოვთ შეიყვანოთ იმეილი სწორად"} : undefined;
     }
 
-    // static restrictedProjectName(control: AbstractControl) : {[key: string]:any} | null {
-    //     if (this.restrictedName.includes(control.value)) {
-    //         return { restrictedName: "ამ სახელის გამოყენება შეზღუდულია"};
-    //     }
-    // }
+    static restrictedEmailName(control: AbstractControl) : {[key: string]:any} | null {
+        if (control.value == "test@test.com") {
+            return { restrictedEmail: "ამ იმეილის გამოყენება შეზღუდულია"};
+        }
+    }
 }
