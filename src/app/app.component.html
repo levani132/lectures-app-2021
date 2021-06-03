@@ -5,13 +5,56 @@
     <ol>
       <li>პროექტის სახელი (არ უნდა იყოს ცარიელი)</li>
       <li>მეილი (არ უნდა იყოს ცარიელი და უნდა იყოს სწორი მეილის ფორმატი)</li>
-      <li>პროექტის სტატუსი, select სამი მნიშვნელობით: სტაბილური, კრიტიკული, დასრულებული</li>
+      <li>
+        პროექტის სტატუსი, select სამი მნიშვნელობით: სტაბილური, კრიტიკული,
+        დასრულებული
+      </li>
       <li>დასრულების ღილაკი</li>
     </ol>
-    <li>დაამატეთ ვალიდატორს კლასი რომელიც დაა-extend-ებს Validators და გამოიყენეთ ამ კლასის ვალიდატორები.</li>
-    <li>დაამატეთ ვალიდატორი რომელიც შეამოწმებს რომ პროექტის სახელში არ ჩაიწეროს Test (არც დიდი არც პატარა ასოებით).</li>
-    <li>ასევე შექმენით(ან გადააკეთეთ წინა ასინქრონულად) ასინქრონული ვალიდატორი, რომელიც შეამოწმებს მეილი test@test.com-ს ხომ არ უდრის</li>
+    <li>
+      დაამატეთ ვალიდატორს კლასი რომელიც დაა-extend-ებს Validators და გამოიყენეთ
+      ამ კლასის ვალიდატორები.
+    </li>
+    <li>
+      დაამატეთ ვალიდატორი რომელიც შეამოწმებს რომ პროექტის სახელში არ ჩაიწეროს
+      Test (არც დიდი არც პატარა ასოებით).
+    </li>
+    <li>
+      ასევე შექმენით(ან გადააკეთეთ წინა ასინქრონულად) ასინქრონული ვალიდატორი,
+      რომელიც შეამოწმებს მეილი test@test.com-ს ხომ არ უდრის
+    </li>
     <li>submit ღილაკზე დაჭერისას კონსოლში დალოგეთ ფორმის მნისვნელობა.</li>
   </ol>
   <!-- TODO: წაშალეთ ეს კომენტარი და ამის ადგილას ჩასვით თქვენი კომპონენტები -->
+  <div class="ui form" [formGroup]="form">
+    <div class="ten wide field">
+      <div class="name">პროექტის სახელი</div>
+      <input type="text" formControlName="projectName" />
+      <div
+        class="validationError"
+        *ngIf="form.get('projectName')?.errors?.nameRestriction"
+      >
+        {{ form.get("projectName")?.errors?.nameRestriction }}
+      </div>
+    </div>
+    <div class="ten wide field">
+      <div class="mail">მეილი</div>
+      <input type="text" formControlName="mail" />
+      <div
+        class="validationError"
+        *ngIf="form.get('mail')?.errors?.emailRestriction"
+      >
+        {{ form.get("mail")?.errors?.emailRestriction }}
+      </div>
+    </div>
+    <div class="ten wide field">
+      <div class="select">აირჩიე</div>
+      <select formControlName="status">
+        <option value="სტაბილური">სტაბილური</option>
+        <option value="კრიტიკული">კრიტიკული</option>
+        <option value="დასრულებული">დასრულებული</option>
+      </select>
+    </div>
+    <div class="ui button green" (click)="onSubtmit()">დასრულება</div>
+  </div>
 </div>
