@@ -28,13 +28,13 @@ export class RegisterComponent implements OnInit {
     const password = this.get('password').value;
     this.authService.register(name, username, password).subscribe(
       resData => {
+        this.form.reset();
         console.log(resData);
       },
       error => {
         this.error = error;
       }
     );
-    this.form.reset();
   }
 
   get(controlName) {

@@ -26,9 +26,8 @@
       >პოსტის დამატება</a
     >
     <div class="right menu">
-      <a class="item" routerLink="/auth" routerLinkActive="active"
-        >სისტემაში შესვლა</a
-      >
+      <a class="item" routerLink="/auth" routerLinkActive="active" *ngIf="!loggedIn">სისტემაში შესვლა</a>
+      <a class="item" (click)="logout()" *ngIf="loggedIn">გასვლა</a>
     </div>
   </div>
   <router-outlet></router-outlet>
