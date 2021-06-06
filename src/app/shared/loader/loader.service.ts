@@ -8,16 +8,16 @@ import { finalize } from 'rxjs/operators';
 export class LoaderService {
   isLoading = 0;
 
+  useLoader = (obs: Observable<any>) => {
+    this.startLoading();
+    return obs.pipe(finalize(() => this.endLoading()));
+  }
+
   startLoading() {
     this.isLoading++;
   }
 
   endLoading() {
     this.isLoading = Math.max(this.isLoading - 1, 0);
-  }
-
-  useLoader = (obs: Observable<any>) => {
-    this.startLoading();
-    return obs.pipe(finalize(() => this.endLoading()));
   }
 }

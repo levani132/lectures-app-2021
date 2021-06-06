@@ -33,18 +33,23 @@ const routes: Routes = [
         component: BpmComponent,
         children: [
           {
+            path: '',
+            redirectTo: 'bpm000',
+            pathMatch: 'full'
+          },
+          {
             path: 'bpm000',
             component: Bpm000Component
           },
           {
             path: 'bpm001',
             component: Bpm001Component
-          }
+          },
         ]
       },
       {
         path: '',
-        redirectTo: '/bpm',
+        redirectTo: 'bpm',
         pathMatch: 'full'
       }
     ]

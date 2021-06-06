@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { Validators } from 'src/app/shared/validators';
 import { AuthService } from 'src/app/shared/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'bg-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   error;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.initForm();
@@ -29,12 +30,13 @@ export class RegisterComponent implements OnInit {
     this.authService.register(name, username, password).subscribe(
       resData => {
         console.log(resData);
+        this.form.reset();
+        this.router.navigate(['/']);
       },
       error => {
         this.error = error;
       }
     );
-    this.form.reset();
   }
 
   get(controlName) {
