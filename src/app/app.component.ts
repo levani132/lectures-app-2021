@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'bg-root',
@@ -9,8 +9,10 @@ export class AppComponent {
   appStatus = new Promise(resolve => {
     setTimeout(() => resolve('აქტიური'), 2000);
   });
+
   filterText = '';
   shouldFilter = true;
+
   accounts = [
     {
       owner: 'ლევან ბეროშვილი',
