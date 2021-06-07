@@ -1,5 +1,5 @@
 <div class="ui container">
-  <h1>სემინარის დავალება</h1>
+  <!-- <h1>სემინარის დავალება</h1>
   <ol>
     <li>
       დაამატე ტოკენი არსებული auth-interceptor-ის საშუალებით ყველა request-ს.
@@ -17,7 +17,7 @@
       localStorage-დან და შეინახავს user-ს.
     </li>
     <li>დაამატე ngOnInit-ში authService-ის ავტომატური შესვლის მეთოდი.</li>
-  </ol>
+  </ol> -->
   <div class="ui menu">
     <a class="item" routerLink="/bpm/bpm000" routerLinkActive="active"
       >პოსტები</a
@@ -37,7 +37,7 @@
         *ngIf="!isAuthenticated"
         >სისტემაში შესვლა</a
       >
-      <a class="item" *ngIf="isAuthenticated">გამოსვლა</a>
+      <a class="item" *ngIf="isAuthenticated" (click)="authService.logOut()">გამოსვლა</a>
     </div>
   </div>
   <router-outlet></router-outlet>

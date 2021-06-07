@@ -4,14 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { AuthResponseModel } from './auth-response.model';
 import { LoaderService } from '../loader/loader.service';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, Subject } from 'rxjs';
+import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  user = new Subject<User>();
+  user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient, private loaderService: LoaderService) {}
 
@@ -42,6 +42,33 @@ export class AuthService {
       );
   }
 
+  logOut() {
+    this.user.next(null);
+  }
+
+  autoLogin() {
+    const curUser = JSON.parse(localStorage.getItem('user'));
+
+    if (!curUser) {
+      return;
+    }
+
+    const user = new User(
+      curUser.name,
+      curUser.username,
+      curUser.image,
+      curUser._token,
+      curUser._tokenExpirationDate
+    );
+
+    if (!user.token) {
+      localStorage.removeItem('user');
+      return;
+    }
+
+    this.user.next(user);
+  }
+
   handleAuth = (resData: AuthResponseModel) => {
     const user = new User(
       resData.name,
@@ -51,5 +78,6 @@ export class AuthService {
       new Date(resData.expirationDate)
     );
     this.user.next(user);
-  };
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 }
