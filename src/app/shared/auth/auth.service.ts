@@ -4,16 +4,17 @@ import { HttpClient } from '@angular/common/http';
 import { AuthResponseModel } from './auth-response.model';
 import { LoaderService } from '../loader/loader.service';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, Subject } from 'rxjs';
+import { throwError, Subject, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  user = new Subject<User>();
+  user = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient, private loaderService: LoaderService) {}
+  constructor(private http: HttpClient, private loaderService: LoaderService, private router: Router) {}
 
   register(name, username, password) {
     return this.http
@@ -42,6 +43,23 @@ export class AuthService {
       );
   }
 
+  autoLogin() {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    this.user.next(new User(
+      userInfo.name,
+      userInfo.username,
+      userInfo.image,
+      userInfo._token,
+      userInfo._expirationDate
+    ));
+  }
+
+  logout() {
+    this.user.next(null);
+    localStorage.removeItem('userInfo');
+    this.router.navigate(['auth']);
+  }
+
   handleAuth = (resData: AuthResponseModel) => {
     const user = new User(
       resData.name,
@@ -51,5 +69,6 @@ export class AuthService {
       new Date(resData.expirationDate)
     );
     this.user.next(user);
+    localStorage.setItem('userInfo', JSON.stringify(user));
   };
 }

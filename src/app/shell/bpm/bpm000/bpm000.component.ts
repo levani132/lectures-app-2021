@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostsService } from '../posts.service';
 import { finalize } from 'rxjs/operators';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'bg-bpm000',
@@ -43,5 +44,4 @@ export class Bpm000Component implements OnInit {
     this.isLoading = true;
     return observable.pipe(finalize(() => this.isLoading = false));
   }
-
 }
