@@ -27,7 +27,12 @@
     >
     <div class="right menu">
       <a class="item" routerLink="/auth" routerLinkActive="active"
+         *ngIf="!isLogged"
         >სისტემაში შესვლა</a
+      >
+      <a class="item" routerLink="/auth" routerLinkActive="active"
+         *ngIf="isLogged"
+        >სისტემიდან გამოსვლა</a
       >
     </div>
   </div>
