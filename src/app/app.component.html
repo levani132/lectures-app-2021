@@ -1,30 +1,40 @@
 <div class="ui container">
   <h1>სემინარის დავალება</h1>
   <ol>
-    <li>დაწერეთ და გამოიყენეთ შებრუნების pipe სტატუსის ველზე. (უკუღმა უნდა გამოიტანოს რაც წერია)</li>
-    <li>დაწერეთ და გამოიყენეთ დასორტირების pipe ანგარიშებზე, რის შემდეგაც ანგარიშები მფლობელის სახელის მიხედვით დასორტირდებიან.</li>
+    <li>
+      დაწერეთ და გამოიყენეთ შებრუნების pipe სტატუსის ველზე. (უკუღმა უნდა
+      გამოიტანოს რაც წერია)
+    </li>
+    <li>
+      დაწერეთ და გამოიყენეთ დასორტირების pipe ანგარიშებზე, რის შემდეგაც
+      ანგარიშები მფლობელის სახელის მიხედვით დასორტირდებიან.
+    </li>
   </ol>
   <h1>აპლიკაციის სტატუსია: {{ appStatus | async }}</h1>
   <div class="ui form">
     <div class="field">
       <label>ფილტრი</label>
-      <input type="text" [(ngModel)]="filterText">
+      <input type="text" [(ngModel)]="filterText" />
     </div>
     <div class="field">
       <div class="ui checkbox">
-        <input type="checkbox" [(ngModel)]="shouldFilter">
+        <input type="checkbox" [(ngModel)]="shouldFilter" />
         <label>გაფილტროს?</label>
       </div>
     </div>
   </div>
-  <button class="ui button" (click)="addAccount()">
-    ანგარიშის დამატება
-  </button>
+  <button class="ui button" (click)="addAccount()">ანგარიშის დამატება</button>
   <div class="ui segments">
-    <div class="ui segment" *ngFor="let account of shouldFilter ? (accounts | filter:filterText:'owner') : accounts">
-      {{ account.owner | shorten:7 }} |
-      {{ account.status | uppercase }} |
-      {{ account.createdAt | date:'fullDate' | uppercase }}
+    <div
+      class="ui segment"
+      *ngFor="
+        let account of (shouldFilter
+          ? (accounts | filter: filterText:'owner')
+          : accounts) | sorting " 
+
+    >
+      {{ account.owner | shorten: 7 }} | {{ account.status | uppercase | transforming }} |
+      {{ account.createdAt | date: "fullDate" | uppercase }}
     </div>
   </div>
 </div>
