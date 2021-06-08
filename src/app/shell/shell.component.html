@@ -1,0 +1,14 @@
+<div class="ui input">
+  <input type="text" [(ngModel)]="userName"/>
+</div>
+<button class="ui button" [disabled]="isEmpty()" (click)="cleanUserName()">Click</button>
+<p>{{ userName }}</p>
+<hr>
+<button class="ui button" (click)="onShowHIde()">{{buttonText}}</button>
+<ng-container *ngIf="isShow">
+  <p
+    [ngStyle]="{ 'backgroundColor': count >= 5 ? 'blue' : 'transparent' }"
+    [ngClass]="{'ngWhite':count>=7}"
+  >გამაქრე და დამაჭირეს {{count}}
+  </p>
+</ng-container>
