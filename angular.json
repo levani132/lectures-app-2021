@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "lectures-app"
+    }
+  },
+  "defaultProject": "lectures-app",
+  "cli": {
+    "analytics": "8d12f7f3-d80c-4c5d-9d7d-a5ecae996892"
+  }
 }
