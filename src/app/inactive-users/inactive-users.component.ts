@@ -1,22 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {User} from '../Service/user.model';
 
 @Component({
   selector: 'bg-inactive-users',
   templateUrl: './inactive-users.component.html',
   styleUrls: ['./inactive-users.component.scss']
 })
-export class InactiveUsersComponent implements OnInit {
-  @Input() users: string[];
+export class InactiveUsersComponent {
+  @Input() user: User;
 
-  @Output() userSetToActive = new EventEmitter<number>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  changeStatus(id: number) {
-    this.userSetToActive.emit(id);
+  changeStatus() {
+    this.user.status = 'A';
   }
 
 }

@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UsersService} from './Service/Users.service';
+import {User} from './Service/user.model';
 
 @Component({
   selector: 'bg-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [UsersService]
 })
-export class AppComponent {
-  activeUsers = ['ლევანი', 'დიმა'];
-  inactiveUsers = ['მარიამი', 'გიორგი'];
+export class AppComponent implements OnInit{
 
-  onSetToInactive(id: number) {
-    this.inactiveUsers.push(...this.activeUsers.splice(id, 1));
+  users: User[];
+
+  constructor(private userService: UsersService) {
   }
 
-  onSetToActive(id: number) {
-    this.activeUsers.push(...this.inactiveUsers.splice(id, 1));
+  ngOnInit(): void {
+    this.users = this.userService.users;
   }
-
 }

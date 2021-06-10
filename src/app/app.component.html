@@ -1,16 +1,21 @@
 <div class="ui container">
   <h1>სემინარის დავალება</h1>
   <ol>
-    <li>შექმენით სერვისი რომელშიც დაამენეჯებთ აქტიურ და არააქტიურ მომხმარებლებს. ამ თასქის შემდეგ app.component.ts-ში არანაირი კოდი აღარ უნდა გეწეროთ.</li>
-    <li>შექმენით მთვლელი სერვისი, რომელმაც უნდა იცოდეს რამდენჯერ მოხდა მომხმარებლების სტატუსის შეცვლა. ეს რიცხვი counter კომპონენტში უნდა გამოაჩინოთ.</li>
-    <li>ამ სერვისის საშალებით, ყოველ ჯერზე როცა მოხდება რიცხვის გაზრდა გამოაჩინეთ counter კომპონენტის dimmer კლასის მქონე div 2 წამით (setTimeout ფუნქციის საშუალებით).</li>
+    <li>შექმენით სერვისი რომელშიც დაამენეჯებთ აქტიურ და არააქტიურ მომხმარებლებს. ამ თასქის შემდეგ app.component.ts-ში
+      არანაირი კოდი აღარ უნდა გეწეროთ.
+    </li>
+    <li>შექმენით მთვლელი სერვისი, რომელმაც უნდა იცოდეს რამდენჯერ მოხდა მომხმარებლების სტატუსის შეცვლა. ეს რიცხვი counter
+      კომპონენტში უნდა გამოაჩინოთ.
+    </li>
+    <li>ამ სერვისის საშალებით, ყოველ ჯერზე როცა მოხდება რიცხვის გაზრდა გამოაჩინეთ counter კომპონენტის dimmer კლასის
+      მქონე div 2 წამით (setTimeout ფუნქციის საშუალებით).
+    </li>
   </ol>
-  <bg-active-users
-    [users]="activeUsers"
-    (userSetToInactive)="onSetToInactive($event)"></bg-active-users>
-  <hr>
-  <bg-inactive-users
-    [users]="inactiveUsers"
-    (userSetToActive)="onSetToActive($event)"></bg-inactive-users>
+  <ng-container *ngFor="let user of  users">
+    <bg-active-users *ngIf="user.status=='A'" [user]="user"></bg-active-users>
+
+    <bg-inactive-users *ngIf="user.status=='C'" [user]="user"></bg-inactive-users>
+
+    <bg-counter [userIndex]="user.index"></bg-counter>
+  </ng-container>
 </div>
-<bg-counter></bg-counter>
